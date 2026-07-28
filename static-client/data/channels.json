@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Design Talk",
+    "description": "A community for designers to share ideas and feedback",
+    "members": 3420,
+    "posts": 856,
+    "avatar": "/assets/images/avatar_default.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Dev Tips & Tricks",
+    "description": "Share your coding tips, tricks, and best practices",
+    "members": 5680,
+    "posts": 2143,
+    "avatar": "/assets/images/avatar_default.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Tech News Daily",
+    "description": "Latest news in technology and innovation",
+    "members": 8920,
+    "posts": 4256,
+    "avatar": "/assets/images/avatar_default.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Marketing Strategies",
+    "description": "Discuss marketing campaigns, growth hacks, and analytics",
+    "members": 2340,
+    "posts": 1045,
+    "avatar": "/assets/images/avatar_default.jpg"
+  }
+]

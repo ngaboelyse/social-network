@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "author": "Alice Johnson",
+    "username": "alice_j",
+    "avatar": "/assets/images/avatar_default.jpg",
+    "date": "2026-07-28T10:30:00Z",
+    "content": "Just launched our new design system! Really excited about the collaboration with the team on this one. Check it out and let me know what you think! 🎨",
+    "likes": 234,
+    "comments": 18,
+    "shares": 45,
+    "liked": false
+  },
+  {
+    "id": 2,
+    "author": "Bob Smith",
+    "username": "bob_smith",
+    "avatar": "/assets/images/avatar_default.jpg",
+    "date": "2026-07-27T14:15:00Z",
+    "content": "Contributing to open source is one of the most rewarding experiences as a developer. If you haven't started yet, I highly recommend it!",
+    "likes": 512,
+    "comments": 64,
+    "shares": 128,
+    "liked": false
+  },
+  {
+    "id": 3,
+    "author": "Carol Davis",
+    "username": "carol_d",
+    "avatar": "/assets/images/avatar_default.jpg",
+    "date": "2026-07-26T09:45:00Z",
+    "content": "Our Q3 marketing strategy is live! Focusing on community engagement and authentic storytelling. Excited to see what we can achieve this quarter!",
+    "likes": 178,
+    "comments": 23,
+    "shares": 34,
+    "liked": false
+  },
+  {
+    "id": 4,
+    "author": "Alice Johnson",
+    "username": "alice_j",
+    "avatar": "/assets/images/avatar_default.jpg",
+    "date": "2026-07-25T16:20:00Z",
+    "content": "Design tip: Always test your prototypes with real users. What seems intuitive to us might be confusing to others. User feedback is gold! ✨",
+    "likes": 425,
+    "comments": 52,
+    "shares": 89,
+    "liked": false
+  }
+]

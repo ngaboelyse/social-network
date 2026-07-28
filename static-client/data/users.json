@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "username": "alice_j",
+    "avatar": "/assets/images/avatar_default.jpg",
+    "bio": "Product Designer | Coffee Enthusiast",
+    "followers": 1250,
+    "following": 340
+  },
+  {
+    "id": 2,
+    "name": "Bob Smith",
+    "username": "bob_smith",
+    "avatar": "/assets/images/avatar_default.jpg",
+    "bio": "Full-stack Developer | Open Source",
+    "followers": 2100,
+    "following": 520
+  },
+  {
+    "id": 3,
+    "name": "Carol Davis",
+    "username": "carol_d",
+    "avatar": "/assets/images/avatar_default.jpg",
+    "bio": "Marketing Manager | Tech Lover",
+    "followers": 890,
+    "following": 450
+  }
+]

@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Channels - Social Network</title>
+  <link rel="stylesheet" href="/assets/css/tailwind.output.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: #f0f2f5; }
+    
+    header { background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+    .navbar { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #1f2937; }
+    nav { display: flex; gap: 2rem; }
+    nav a { text-decoration: none; color: #6b7280; font-weight: 500; transition: color 0.2s; }
+    nav a:hover { color: #1f2937; }
+    
+    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { margin-bottom: 2rem; color: #1f2937; }
+    
+    .channels-list { display: grid; gap: 1.5rem; }
+    .channel-card { background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; gap: 1.5rem; align-items: flex-start; transition: box-shadow 0.2s; }
+    .channel-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    
+    .channel-avatar { width: 80px; height: 80px; border-radius: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); flex-shrink: 0; }
+    
+    .channel-info { flex: 1; }
+    .channel-name { font-size: 1.1rem; font-weight: 600; color: #1f2937; }
+    .channel-desc { color: #6b7280; font-size: 0.9rem; margin: 0.5rem 0; line-height: 1.4; }
+    
+    .channel-stats { display: flex; gap: 2rem; margin-top: 1rem; font-size: 0.85rem; color: #9ca3af; }
+    .channel-stat { display: flex; align-items: center; gap: 0.5rem; }
+    
+    .channel-action { text-align: right; }
+    .btn { background: #3b82f6; color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
+    .btn:hover { background: #2563eb; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">👥 SocialNet</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/users.html">People</a>
+        <a href="/channels.html">Channels</a>
+        <a href="/profile.html">Profile</a>
+        <a href="/search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Explore Channels</h1>
+    <div class="channels-list" id="channels">
+      <div style="text-align: center; color: #9ca3af; padding: 2rem;">Loading...</div>
+    </div>
+  </div>
+
+  <script>
+    async function loadChannels(){
+      const r = await fetch('/api/channels');
+      const channels = await r.json();
+      const el = document.getElementById('channels');
+      if(!channels.length) { el.innerHTML = '<div style="text-align: center;">No channels found.</div>'; return; }
+      el.innerHTML = channels.map(c => `
+        <article class="channel-card">
+          <div class="channel-avatar"></div>
+          <div class="channel-info">
+            <div class="channel-name">${c.name}</div>
+            <div class="channel-desc">${c.description}</div>
+            <div class="channel-stats">
+              <div class="channel-stat">👥 ${c.members.toLocaleString()} members</div>
+              <div class="channel-stat">📝 ${c.posts} posts</div>
+            </div>
+          </div>
+          <div class="channel-action">
+            <button class="btn">Join</button>
+          </div>
+        </article>
+      `).join('');
+    }
+    loadChannels();
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Post - Social Network</title>
+  <link rel="stylesheet" href="/assets/css/tailwind.output.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: #f0f2f5; }
+    
+    header { background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+    .navbar { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #1f2937; }
+    nav { display: flex; gap: 2rem; }
+    nav a { text-decoration: none; color: #6b7280; font-weight: 500; transition: color 0.2s; }
+    nav a:hover { color: #1f2937; }
+    
+    .container { max-width: 700px; margin: 2rem auto; padding: 0 1rem; }
+    
+    .post { background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden; }
+    .post-header { padding: 1.5rem; border-bottom: 1px solid #e5e7eb; display: flex; gap: 1rem; align-items: flex-start; }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .post-meta { flex: 1; }
+    .post-author { font-weight: 600; color: #1f2937; font-size: 1rem; }
+    .post-info { font-size: 0.85rem; color: #9ca3af; margin-top: 0.25rem; }
+    
+    .post-body { padding: 1.5rem; color: #374151; line-height: 1.7; font-size: 1rem; }
+    
+    .post-stats { padding: 1rem 1.5rem; border-top: 1px solid #f3f4f6; border-bottom: 1px solid #f3f4f6; display: flex; gap: 2rem; font-size: 0.85rem; color: #6b7280; }
+    .stat { cursor: pointer; transition: color 0.2s; }
+    .stat:hover { color: #3b82f6; }
+    
+    .post-actions { padding: 1rem 1.5rem; display: flex; gap: 1rem; }
+    .action-btn { flex: 1; padding: 0.75rem; border: 1px solid #e5e7eb; background: white; border-radius: 6px; cursor: pointer; font-weight: 500; color: #6b7280; transition: all 0.2s; }
+    .action-btn:hover { background: #f9fafb; color: #3b82f6; }
+    
+    .back-link { display: inline-block; margin-bottom: 1.5rem; color: #3b82f6; text-decoration: none; font-weight: 500; }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">👥 SocialNet</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/users.html">People</a>
+        <a href="/channels.html">Channels</a>
+        <a href="/profile.html">Profile</a>
+        <a href="/search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <a href="/" class="back-link">← Back to Feed</a>
+
+    <article class="post" id="post-container">
+      <div style="text-align: center; color: #9ca3af; padding: 2rem;">Loading...</div>
+    </article>
+  </div>
+
+  <script>
+    function getParam(name){
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+    async function loadPost(){
+      const id = getParam('id');
+      const r = await fetch('/api/posts');
+      const posts = await r.json();
+      const p = posts.find(x => String(x.id) === String(id)) || posts[0];
+      const el = document.getElementById('post-container');
+      if(!p){ el.innerHTML = '<div style="text-align: center; color: #9ca3af; padding: 2rem;">Post not found</div>'; return; }
+      el.innerHTML = `
+        <div class="post-header">
+          <div class="avatar"></div>
+          <div class="post-meta">
+            <div class="post-author">${p.author}</div>
+            <div class="post-info">${new Date(p.date).toLocaleString()}</div>
+          </div>
+        </div>
+        <div class="post-body">${p.content}</div>
+        <div class="post-stats">
+          <div class="stat">❤️ ${p.likes} Likes</div>
+          <div class="stat">💬 ${p.comments} Comments</div>
+          <div class="stat">🔄 ${p.shares} Shares</div>
+        </div>
+        <div class="post-actions">
+          <button class="action-btn">❤️ Like</button>
+          <button class="action-btn">💬 Comment</button>
+          <button class="action-btn">🔄 Share</button>
+        </div>
+      `;
+    }
+    loadPost();
+  </script>
+</body>
+</html>
